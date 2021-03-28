@@ -11,7 +11,18 @@ public class InputConverter<T> {
 		_Path = Paths.get((String)input);
 	}
 	
-	public List<T> convertBy(Function<Path, List<T>> inputFunction){		
-		return inputFunction.apply(_Path);
+	public List<T> convertBy(Function<Path, List<T>> getList){		
+		return getList.apply(_Path);
+	}
+	public T convertBy(Function<Path, List<String>> getList, Function<List<T>, T> getString){		
+		return getString.apply((List<T>) getList.apply(_Path));
+	}
+	public List<Integer> convertBy(Function<Path, List<String>> getList, Function<List<T>, T> getString, Function<T, List<Integer>> getInts){
+		
+		return getInts.apply(getString.apply((List<T>) getList.apply(_Path)));
+	}
+	public Integer convertBy(Function<Path, List<String>> getList, Function<List<T>, T> getString, Function<T, List<Integer>> getInts, Function<List<Integer>, Integer> getInt){
+		
+		return getInt.apply(getInts.apply(getString.apply((List<T>) getList.apply(_Path))));
 	}
 }
