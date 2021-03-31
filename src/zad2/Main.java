@@ -32,7 +32,7 @@ public class Main {
     m5.ifPresent(System.out::println);
 
     // Metoda map()
-    Maybe<Integer> m6 = m5.map( n -> n +10 ); 
+	Maybe<Integer> m6 = m5.map( n -> n +10 ); 
     System.out.println(m6);
 
     // Metoda get()
